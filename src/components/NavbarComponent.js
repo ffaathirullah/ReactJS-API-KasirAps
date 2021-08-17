@@ -1,11 +1,20 @@
 import React from "react";
-import { Nav, Navbar, NavDropdown, Form, Button } from "react-bootstrap";
+import {
+  Nav,
+  Navbar,
+  NavDropdown,
+  Form,
+  Button,
+  Container,
+} from "react-bootstrap";
 
 function NavbarComponent() {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand href="#home">
+          <strong>Kasir</strong> App
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

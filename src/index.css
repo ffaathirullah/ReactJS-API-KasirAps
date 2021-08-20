@@ -13,3 +13,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.category_aktif {
+  background-color: #22668a;
+  color: white;
+}

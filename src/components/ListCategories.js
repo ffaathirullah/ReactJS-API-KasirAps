@@ -11,7 +11,7 @@ import {
 
 function ListCategories(props) {
   const [categories, setCategories] = useState([]);
-  const { changeCategory, categoriYangDipilih } = props;
+  const { changeCategory, categoriesYangDipilih } = props;
   const Icon = ({ nama }) => {
     if (nama === "Makanan")
       return <FontAwesomeIcon icon={faUtensils} className="mr-2" />;
@@ -48,8 +48,12 @@ function ListCategories(props) {
               onClick={() => {
                 changeCategory(category.nama);
               }}
+              className={
+                categoriesYangDipilih == category.nama && "category_aktif"
+              }
+              style={{ cursor: "pointer" }}
             >
-              <Icon nama={category.nama} className="mr-2" />
+              <Icon nama={category.nama} />
               {category.nama}
             </ListGroup.Item>
           );

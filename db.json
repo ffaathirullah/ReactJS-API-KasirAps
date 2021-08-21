@@ -185,8 +185,8 @@
   ],
   "keranjangs": [
     {
-      "jumlah": 12,
-      "total_harga": 192000,
+      "jumlah": 38,
+      "total_harga": 608000,
       "product": {
         "id": 1,
         "kode": "K-01",
@@ -202,8 +202,8 @@
       "id": 1
     },
     {
-      "jumlah": 5,
-      "total_harga": 70000,
+      "jumlah": 4,
+      "total_harga": 56000,
       "product": {
         "id": 2,
         "kode": "K-02",
@@ -217,74 +217,6 @@
         }
       },
       "id": 2
-    },
-    {
-      "jumlah": 2,
-      "total_harga": 20000,
-      "product": {
-        "id": 6,
-        "kode": "K-06",
-        "nama": "Bakso",
-        "harga": 10000,
-        "is_ready": true,
-        "gambar": "bakso.jpg",
-        "category": {
-          "id": 1,
-          "nama": "Makanan"
-        }
-      },
-      "id": 3
-    },
-    {
-      "jumlah": 1,
-      "total_harga": 13000,
-      "product": {
-        "id": 5,
-        "kode": "K-05",
-        "nama": "Mie Goreng",
-        "harga": 13000,
-        "is_ready": true,
-        "gambar": "mie-goreng.jpg",
-        "category": {
-          "id": 1,
-          "nama": "Makanan"
-        }
-      },
-      "id": 4
-    },
-    {
-      "jumlah": 1,
-      "total_harga": 18000,
-      "product": {
-        "id": 4,
-        "kode": "K-04",
-        "nama": "Lontong Opor Ayam",
-        "harga": 18000,
-        "is_ready": true,
-        "gambar": "lontong-opor-ayam.jpg",
-        "category": {
-          "id": 1,
-          "nama": "Makanan"
-        }
-      },
-      "id": 5
-    },
-    {
-      "jumlah": 1,
-      "total_harga": 14000,
-      "product": {
-        "id": 7,
-        "kode": "K-07",
-        "nama": "Mie Ayam Bakso",
-        "harga": 14000,
-        "is_ready": true,
-        "gambar": "mie-ayam-bakso.jpg",
-        "category": {
-          "id": 1,
-          "nama": "Makanan"
-        }
-      },
-      "id": 6
     }
   ],
   "pesanans": [

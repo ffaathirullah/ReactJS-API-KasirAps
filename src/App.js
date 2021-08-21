@@ -11,15 +11,7 @@ function App() {
   const [categoriesYangDipilih, setcategoriesYangDipilih] = useState("Makanan");
   const [keranjang, setKeranjang] = useState([]);
   useEffect((prevState) => {
-    axios
-      .get(API_URL + "keranjangs")
-      .then((res) => {
-        const keranjang = res.data;
-        setKeranjang(keranjang);
-      })
-      .catch((error) => {
-        console.log("error: " + error);
-      });
+    gelistKeranjang();
 
     axios
       .get(API_URL + "products?category.nama=" + categoriesYangDipilih)
@@ -32,22 +24,16 @@ function App() {
       });
   }, []);
 
-  useEffect(() => {
-    // console.log("keranjang 1 :", keranjang);
-    getWeather();
-  });
-  const getWeather = (prevState) => {
-    if (keranjang !== prevState) {
-      axios
-        .get(API_URL + "keranjangs")
-        .then((res) => {
-          const keranjang = res.data;
-          setKeranjang(keranjang);
-        })
-        .catch((error) => {
-          console.log("error: " + error);
-        });
-    }
+  const gelistKeranjang = () => {
+    axios
+      .get(API_URL + "keranjangs")
+      .then((res) => {
+        const keranjang = res.data;
+        setKeranjang(keranjang);
+      })
+      .catch((error) => {
+        console.log("error: " + error);
+      });
   };
   const changeCategory = (value) => {
     setcategoriesYangDipilih(value);
@@ -75,6 +61,7 @@ function App() {
         axios
           .post(API_URL + "keranjangs", menuKeranjang)
           .then((res) => {
+            gelistKeranjang();
             swal({
               title: "Sukses Masuk Keranjang",
               text: "Success Masuk Keranjang" + menuKeranjang.product.nama,
@@ -95,6 +82,7 @@ function App() {
         axios
           .put(API_URL + "keranjangs/" + res.data[0].id, menuKeranjang)
           .then((res) => {
+            gelistKeranjang();
             swal({
               title: "Sukses Masuk Keranjang",
               text: "Success Masuk Keranjang" + menuKeranjang.product.nama,

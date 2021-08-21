@@ -4,12 +4,23 @@ import { Row, Col, Container } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import { API_URL } from "./utils/contants";
 import axios from "axios";
+import swal from "sweetalert";
 
 function App() {
   const [menus, setMenus] = useState([]);
   const [categoriesYangDipilih, setcategoriesYangDipilih] = useState("Makanan");
+  const [keranjang, setKeranjang] = useState([]);
+  useEffect((prevState) => {
+    axios
+      .get(API_URL + "keranjangs")
+      .then((res) => {
+        const keranjang = res.data;
+        setKeranjang(keranjang);
+      })
+      .catch((error) => {
+        console.log("error: " + error);
+      });
 
-  useEffect(() => {
     axios
       .get(API_URL + "products?category.nama=" + categoriesYangDipilih)
       .then((res) => {
@@ -19,9 +30,25 @@ function App() {
       .catch((error) => {
         console.log("error: " + error);
       });
-
-    return () => {};
   }, []);
+
+  useEffect(() => {
+    // console.log("keranjang 1 :", keranjang);
+    getWeather();
+  });
+  const getWeather = (prevState) => {
+    if (keranjang !== prevState) {
+      axios
+        .get(API_URL + "keranjangs")
+        .then((res) => {
+          const keranjang = res.data;
+          setKeranjang(keranjang);
+        })
+        .catch((error) => {
+          console.log("error: " + error);
+        });
+    }
+  };
   const changeCategory = (value) => {
     setcategoriesYangDipilih(value);
     console.log(categoriesYangDipilih);
@@ -35,6 +62,53 @@ function App() {
         console.log("Error yaa ", error);
       });
   };
+
+  const masukKeranjang = (value) => {
+    axios.get(API_URL + "keranjangs?product.id=" + value.id).then((res) => {
+      if (res.data.length === 0) {
+        const menuKeranjang = {
+          jumlah: 1,
+          total_harga: value.harga,
+          product: value,
+        };
+
+        axios
+          .post(API_URL + "keranjangs", menuKeranjang)
+          .then((res) => {
+            swal({
+              title: "Sukses Masuk Keranjang",
+              text: "Success Masuk Keranjang" + menuKeranjang.product.nama,
+              icon: "success",
+              button: false,
+              timer: 1500,
+            });
+          })
+          .catch((error) => {
+            console.log("Error yaa ", error);
+          });
+      } else {
+        const menuKeranjang = {
+          jumlah: res.data[0].jumlah + 1,
+          total_harga: res.data[0].total_harga + value.harga,
+          product: value,
+        };
+        axios
+          .put(API_URL + "keranjangs/" + res.data[0].id, menuKeranjang)
+          .then((res) => {
+            swal({
+              title: "Sukses Masuk Keranjang",
+              text: "Success Masuk Keranjang" + menuKeranjang.product.nama,
+              icon: "success",
+              button: false,
+              timer: 1500,
+            });
+          })
+          .catch((error) => {
+            console.log("Error yaa ", error);
+          });
+      }
+    });
+  };
   return (
     <div className="App">
       <NavbarComponent />
@@ -42,6 +116,7 @@ function App() {
         <Container fluid>
           <Row>
             <ListCategories
+              key={changeCategory.id}
               changeCategory={changeCategory}
               categoriesYangDipilih={categoriesYangDipilih}
             />
@@ -52,11 +127,17 @@ function App() {
               </h4>
               <Row md={3} xs={2}>
                 {menus.map((menu) => {
-                  return <Menus key={menu.id} menu={menu} />;
+                  return (
+                    <Menus
+                      key={menu.id}
+                      menu={menu}
+                      masukKeranjang={masukKeranjang}
+                    />
+                  );
                 })}
               </Row>
             </Col>
-            <Hasil />
+            <Hasil keranjang={keranjang} />
           </Row>
         </Container>
       </div>

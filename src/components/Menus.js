@@ -2,12 +2,13 @@ import React from "react";
 import { Col, Card, Row } from "react-bootstrap";
 import { numberWithCommas } from "./../utils/utils";
 
-const Menus = ({ menu }) => {
+const Menus = (props) => {
+  const { menu, masukKeranjang } = props;
   return (
     <div>
       <Row>
         <Col className="mb-4">
-          <Card className="shadow">
+          <Card className="shadow" onClick={() => masukKeranjang(menu)}>
             <Card.Img
               variant="top"
               src={`assets/images/${menu.category.nama.toLowerCase()}/${

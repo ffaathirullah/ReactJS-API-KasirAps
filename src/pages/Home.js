@@ -5,7 +5,7 @@ import { API_URL } from "../utils/contants";
 import axios from "axios";
 import swal from "sweetalert";
 
-function Home() {
+function Home(props) {
   const [menus, setMenus] = useState([]);
   const [categoriesYangDipilih, setcategoriesYangDipilih] = useState("Makanan");
   const [keranjang, setKeranjang] = useState([]);
@@ -123,7 +123,7 @@ function Home() {
                 })}
               </Row>
             </Col>
-            <Hasil keranjang={keranjang} />
+            <Hasil keranjang={keranjang} {...props} />
           </Row>
         </Container>
       </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, ListGroup, Row, Badge } from "react-bootstrap";
 import { numberWithCommas } from "./../utils/utils";
+import TotalBayar from "./TotalBayar";
 
 function Hasil(props) {
   const { keranjang } = props;
@@ -39,6 +40,7 @@ function Hasil(props) {
           </ListGroup>
         )}
       </h4>
+      <TotalBayar keranjang={keranjang} {...props} />
     </Col>
   );
 }

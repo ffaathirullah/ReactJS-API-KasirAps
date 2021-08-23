@@ -185,8 +185,8 @@
   ],
   "keranjangs": [
     {
-      "jumlah": 38,
-      "total_harga": 608000,
+      "jumlah": 41,
+      "total_harga": 656000,
       "product": {
         "id": 1,
         "kode": "K-01",
@@ -202,8 +202,8 @@
       "id": 1
     },
     {
-      "jumlah": 4,
-      "total_harga": 56000,
+      "jumlah": 5,
+      "total_harga": 70000,
       "product": {
         "id": 2,
         "kode": "K-02",
@@ -217,6 +217,23 @@
         }
       },
       "id": 2
+    },
+    {
+      "jumlah": 1,
+      "total_harga": 12000,
+      "product": {
+        "id": 3,
+        "kode": "K-03",
+        "nama": "Nasi Rames",
+        "harga": 12000,
+        "is_ready": true,
+        "gambar": "nasi-rames.jpg",
+        "category": {
+          "id": 1,
+          "nama": "Makanan"
+        }
+      },
+      "id": 3
     }
   ],
   "pesanans": [
